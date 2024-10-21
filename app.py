@@ -82,6 +82,17 @@ translation_history = []
 current_partial_text = ""
 is_recording = False
 result_queue = queue.Queue()
+@app.route('/')
+def index():
+    return jsonify({
+        "message": "Speech Translation API is working fine!",
+        "target_languages": sorted(target_languages.keys()),
+        "speech_recognition_languages": sorted(speech_recognition_languages.keys())
+    })
+
+@app.route('/health')
+def health_check():
+    return jsonify({"status": "healthy", "message": "Speech Translation API is working fine!"})
 
 @app.route('/')
 def index():
